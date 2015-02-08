@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="node_modules/oboe/dist/oboe-browser.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        oboe("http://localhost:8080/x")
+            .node('count', function(node, path, anc) {
+                console.log(node);
+            })
+            .path('rows', function(node, path) {
+                console.log("rows found");
+            })
+            .node('rows.*', function(node, path) {
+            	
+            	var tbody = document.querySelector("#t tbody");
+            	tbody.innerHTML += "<tr><td>" + node.name + "</td></tr>";
+                console.log(node);
+            })
+            .done(function(model) {
+                console.log("Done");
+                console.log(arguments);
+            })
+            .on('done', function(m) {
+                console.log("Done");
+                console.log(m);
+            })
+            .fail(console.error)
+
+    });
+    </script>
+</head>
+
+<body>
+<table id="t">
+	<tr>
+	<th>name</th>
+	<th>email</th>
+	<th>phone</th>
+	<th>city</th>
+	</tr>
+	<tbody>
+		
+	</tbody>
+</table>
+
+</body>
+
+</html>
