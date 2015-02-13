@@ -1,10 +1,11 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="node_modules/oboe/dist/oboe-browser.js"></script>
+    <link rel="stylesheet" type="text/css" href="semantic.min.css" />
+    <script type="text/javascript" src="oboe-browser.js"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        oboe("http://localhost:8080/x")
+        oboe("http://localhost:8080/users.json")
             .node('count', function(node, path, anc) {
                 console.log(node);
             })
@@ -12,9 +13,14 @@
                 console.log("rows found");
             })
             .node('rows.*', function(node, path) {
-            	
             	var tbody = document.querySelector("#t tbody");
-            	tbody.innerHTML += "<tr><td>" + node.name + "</td></tr>";
+            	var row = "";
+            	row += "<td>" + node.name + "</td>";
+            	row += "<td>" + node.email + "</td>";
+            	row += "<td>" + node.phone + "</td>";
+            	row += "<td>" + node.city + "</td>";
+            	row += "<td>" + node.address + "</td>";
+            	tbody.innerHTML += "<tr>" + row + "</tr>";
                 console.log(node);
             })
             .done(function(model) {
@@ -31,19 +37,20 @@
     </script>
 </head>
 
-<body>
-<table id="t">
-	<tr>
-	<th>name</th>
-	<th>email</th>
-	<th>phone</th>
-	<th>city</th>
-	</tr>
+<body style="width: 90%; margin: 0 auto">
+<h1>Streaming JSON example 1</h1>
+<table id="t" class="ui celled striped table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>City</th>
+			<th>Address</th>
+		</tr>		
+	</thead>
 	<tbody>
-		
 	</tbody>
 </table>
-
 </body>
-
 </html>
