@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "Streaming JSON, etc.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "faker": "^2.1.2",
     "jsonstreamify": "0.0.1",
     "oboe": "^2.1.1",
-    "semantic-ui": "^1.8.1"
-  }
+    "semantic-ui": "^2.1.7",
+    "snyk": "^1.29.0"
+  },
+  "snyk": true
 }
